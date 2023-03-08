@@ -1,4 +1,5 @@
 download:
+	mkdir -p data_raw data
 	wget http://www.timeseriesclassification.com/Downloads/SmallKitchenAppliances.zip -P data_raw/
 	wget http://www.timeseriesclassification.com/Downloads/LargeKitchenAppliances.zip -P data_raw/
 	unzip data_raw/SmallKitchenAppliances.zip -d data_raw/
@@ -8,4 +9,7 @@ download:
 	rm data_raw/*.txt
 
 process:
-	Rscript process_appliances.R
+	Rscript process_raw.R
+
+timeseries:
+	Rscript genereate_time_series.R
