@@ -12,4 +12,7 @@ process:
 	Rscript process_raw.R
 
 timeseries:
-	Rscript genereate_time_series.R
+	Rscript generate_time_series.R
+
+test:
+	Rscript test_timeseries_pred_quality.R
