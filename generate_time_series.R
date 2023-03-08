@@ -21,6 +21,6 @@ series = lapply(1:nrow(data), function(x) {
     colSums(large[sample(.N, data[x]$n_large)])
 })
 
-series_dt = do.call(rbind, series)
+series_dt = abs(do.call(rbind, series))
 
 fwrite(series_dt, file = "data/energy_usage.csv")

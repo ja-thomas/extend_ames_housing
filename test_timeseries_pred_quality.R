@@ -25,3 +25,9 @@ grid = benchmark_grid(list(t1, t2), lrn("regr.ranger"), r)
 res = benchmark(grid)
 
 print(res$aggregate(msr("regr.mae")))
+
+
+learner = lrn("regr.ranger", importance = "permutation")
+learner$train(t2)
+
+print(learner$importance())
