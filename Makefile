@@ -14,5 +14,8 @@ process:
 timeseries:
 	Rscript generate_time_series.R
 
+ames:
+	Rscript generate_ames_dirty.R
+
 test:
 	Rscript test_timeseries_pred_quality.R

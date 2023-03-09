@@ -22,6 +22,8 @@ five_point = c(
   "Poor"
 )
 
+n = nrow(AmesHousing::ames_raw)
+
 ames = AmesHousing::ames_raw %>%
     # Rename variables with spaces or begin with numbers.
     # SalePrice would be inconsistently named so change that too.
@@ -354,5 +356,12 @@ ames = AmesHousing::ames_raw %>%
       BsmtFin_Type_2 = factor(BsmtFin_Type_2),
       Neighborhood = factor(Neighborhood)
     ) %>%
-    dplyr::select(-Order,-PID,-Kitchen_Qual)
+    dplyr::mutate(Misc_Feature_2 = factor(rep("Othr", times = n))) %>%
+    dplyr::mutate(Misc_Feature_2 = factor(rep("Othr", times = n))) %>%
+    dplyr::mutate(Condition_3 = Condition_2) %>%
+    dplyr::mutate(Lot_Area_m2 = 0.092903 * Lot_Area) %>%
+    dplyr::select(-Order,-PID,-Kitchen_Qual) %>%
+    dplyr::select(order(colnames(.))) %>%
+    dplyr::relocate(Sale_Price)
 
+write.csv(ames, file = "data/ames_dirty.csv", row.names = FALSE)
