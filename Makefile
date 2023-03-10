@@ -1,3 +1,9 @@
+all:
+	download
+	process
+	timeseries
+	ames
+
 download:
 	mkdir -p data_raw data
 	wget http://www.timeseriesclassification.com/Downloads/SmallKitchenAppliances.zip -P data_raw/
@@ -9,13 +15,13 @@ download:
 	rm data_raw/*.txt
 
 process:
-	Rscript process_raw.R
+	Rscript code/process_raw.R
 
 timeseries:
-	Rscript generate_time_series.R
+	Rscript code/generate_time_series.R
 
 ames:
-	Rscript generate_ames_dirty.R
+	Rscript code/generate_ames_dirty.R
 
 test:
-	Rscript test_timeseries_pred_quality.R
+	Rscript code/test_timeseries_pred_quality.R
